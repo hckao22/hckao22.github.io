@@ -55,7 +55,7 @@
       </section>
       -->
     </div>
-    <div id="btn-ar" style="height:44px; line-height:44px; text-align:center;">開啟 AR 功能</div>
+    <div id="btn-ar" style="height:44px; line-height:44px; text-align:center;">開啟 AR 模式</div>
   </div>
 
   <!-- 💁 Include both scripts below to support all browsers! -->
@@ -133,13 +133,20 @@
   <!--另開AR畫面-->
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const ar = urlParams.get('ar');
+      if (ar === '1') {
+          document.getElementById("btn-ar").style.display = 'none';
+          document.getElementById("default-ar-button").click();
+          return;
+      }
       var liffID = '1657407032-eDyRGJ9k';
-      alert(liff);
       liff.init({
         liffId: liffID
       }).then(function() {
         console.log('LIFF init');
-        alert('LIFF init');
+        // alert('LIFF init');
 
         // 這邊開始寫使用其他功能
         document.getElementById("btn-ar").onclick = function() {
@@ -150,7 +157,7 @@
         }
       }).catch(function(error) {
         console.log(error);
-        alert(error);
+        // alert(error);
       });
   </script>
 </body>
