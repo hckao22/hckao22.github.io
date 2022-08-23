@@ -23,7 +23,9 @@
     <!-- 💁 OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
     <script src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
 
-  </head> 
+    <!-- LIFF -->
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  </head>
 <body>
   <!--取用相機(一定要https下)-->
   <div id="app"></div>
@@ -131,7 +133,6 @@
   </script>
   
   <!--另開AR畫面-->
-  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
