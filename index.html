@@ -27,8 +27,10 @@
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   </head>
 <body>
-  <!--取用相機(一定要https下)-->
+  <!--要求取用相機權限(一定要https下)-->
+  <!--
   <div id="app"></div>
+  -->
   <div class="row">
     <div id="card">
       <!-- All you need to put beautiful, interactive 3D content on your site: -->
@@ -57,6 +59,7 @@
       </section>
       -->
     </div>
+    <!-- iOS 才需要此按鈕 -->
     <div id="btn-ar" style="height:44px; line-height:44px; text-align:center;">開啟 AR 模式</div>
   </div>
 
@@ -72,7 +75,8 @@
       src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
   </script>
 
-  <!--取用相機(一定要https下)-->
+  <!--要求取用相機權限(一定要https下)-->
+  <!--
   <script>
       const constraints = {
         audio: false,
@@ -131,9 +135,20 @@
 
       document.getElementById("app").onload = init();
   </script>
+  -->
   
   <!--另開AR畫面-->
   <script>
+      var ua = navigator.userAgent.toLowerCase();
+      var isAndroid = ua.indexOf("android") > -1;
+      if (isAndroid) {
+        document.getElementById("btn-ar").style.display = 'none';
+      }
+
+      // 由於 LIFF 在 iOS 系統上執行時，點擊 model-viewer 內的 ar-button 是沒有權限開啟相機的，因此改用以下方式處理。
+      // 1. 使用 liff.openWindow 讓本頁面再次於外部瀏覽器開啟。
+      // 2. 再次開啟本頁面時，帶入 ar=1 參數。
+      // 3. 本頁面偵測到 ar=1 參數時，自動進入 AR 模式。
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       const ar = urlParams.get('ar');
@@ -141,6 +156,7 @@
         // document.getElementById("btn-ar").style.display = 'none';
         // document.getElementById("default-ar-button").click();
         // document.getElementsByName("ar-button")[0].click();
+        // 自動進入 AR 模式
         const modelViewer = document.querySelector('model-viewer');
         console.log(modelViewer.activateAR)
         modelViewer.addEventListener('load', () => {
