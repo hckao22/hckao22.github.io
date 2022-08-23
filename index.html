@@ -137,6 +137,7 @@
         liffId: liffID
       }).then(function() {
         console.log('LIFF init');
+        alert('LIFF init');
 
         // 這邊開始寫使用其他功能
         document.getElementById("btn-ar").onclick = function() {
@@ -147,6 +148,7 @@
         }
       }).catch(function(error) {
         console.log(error);
+        alert(error);
       });
   </script>
 </body>
