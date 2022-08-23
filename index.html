@@ -135,8 +135,11 @@
   <!--另開AR畫面-->
   <script>
       const queryString = window.location.search;
+      alert(queryString);
       const urlParams = new URLSearchParams(queryString);
+      alert(urlParams);
       const ar = urlParams.get('ar');
+      alert(ar);
       if (ar === '1') {
           document.getElementById("btn-ar").style.display = 'none';
           document.getElementById("default-ar-button").click();
