@@ -141,29 +141,29 @@
       const ar = urlParams.get('ar');
       alert(ar);
       if (ar === '1') {
-          document.getElementById("btn-ar").style.display = 'none';
-          document.getElementById("default-ar-button").click();
-          return;
-      }
-      var liffID = '1657407032-eDyRGJ9k';
-      alert(liff);
-      liff.init({
-        liffId: liffID
-      }).then(function() {
-        console.log('LIFF init');
-        // alert('LIFF init');
+        document.getElementById("btn-ar").style.display = 'none';
+        document.getElementById("default-ar-button").click();
+      } else {
+        var liffID = '1657407032-eDyRGJ9k';
+        alert(liff);
+        liff.init({
+          liffId: liffID
+        }).then(function() {
+          console.log('LIFF init');
+          // alert('LIFF init');
 
-        // 這邊開始寫使用其他功能
-        document.getElementById("btn-ar").onclick = function() {
-          liff.openWindow({
-            url: location.href + '?ar=1',
-            external: true
-          });
-        }
-      }).catch(function(error) {
-        console.log(error);
-        // alert(error);
-      });
+          // 這邊開始寫使用其他功能
+          document.getElementById("btn-ar").onclick = function() {
+            liff.openWindow({
+              url: location.href + '?ar=1',
+              external: true
+            });
+          }
+        }).catch(function(error) {
+          console.log(error);
+          // alert(error);
+        });
+      }
   </script>
 </body>
 </html>
